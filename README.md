@@ -1,0 +1,2 @@
+# MyQTProject_CardGame
+CardGame
