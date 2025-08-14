@@ -1,4 +1,4 @@
-#include "card.h"
+﻿#include "card.h"
 
 
 namespace basedata
@@ -23,14 +23,38 @@ namespace basedata
         m_suit = suit;
     }
 
-    CardPoint Card::getPoint()
+    CardPoint Card::getPoint() const
     {
         return m_point;
     }
 
-    CardSuit Card::getSuit()
+    CardSuit Card::getSuit() const
     {
         return m_suit;
+    }
+
+    bool lessSort(const Card& c1, const Card& c2)
+    {
+        if(c1.getPoint() == c2.getPoint())
+        {
+            return c1.getSuit() < c2.getSuit();
+        }
+        else
+        {
+            return c1.getPoint() < c2.getPoint();
+        }
+    }
+
+    bool greaterSort(const Card &c1, const Card &c2)
+    {
+        if(c1.getPoint() == c2.getPoint())
+        {
+            return c1.getSuit() > c2.getSuit();
+        }
+        else
+        {
+            return c1.getPoint() > c2.getPoint();
+        }
     }
 
 } //end of namespace basedata

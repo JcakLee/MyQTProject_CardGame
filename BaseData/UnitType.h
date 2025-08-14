@@ -1,5 +1,8 @@
-#ifndef UNITTYPE_H
+﻿#ifndef UNITTYPE_H
 #define UNITTYPE_H
+
+#include <QHash>
+#include <QtCore>
 
 namespace basedata
 {
@@ -35,6 +38,30 @@ namespace basedata
         Card_BJ,
         CardPoint_End,
     };
+
+    //排序方式
+    enum class SortType
+    {
+        ASC,
+        DESC,
+        NOSORT,
+    };
+
+    // ----------------------------
+    // 必须添加的哈希函数（针对枚举）
+    // ----------------------------
+
+    // CardSuit 的哈希函数
+    inline size_t  qHash(CardSuit suit, size_t  seed = 0) noexcept
+    {
+        return ::qHash(static_cast<size_t >(suit), seed);
+    }
+
+    // CardPoint 的哈希函数
+    inline size_t  qHash(CardPoint point, size_t  seed = 0) noexcept
+    {
+        return ::qHash(static_cast<size_t >(point), seed);
+    }
 
 } //end of namespace basedata
 
