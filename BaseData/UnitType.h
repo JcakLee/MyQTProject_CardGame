@@ -47,6 +47,32 @@ namespace basedata
         NOSORT,
     };
 
+    //玩家
+    enum class Role
+    {
+        Lord,
+        Farmer,
+    };
+
+    enum class Sex
+    {
+        Man,
+        Woman,
+    };
+
+    enum class PlayerDir
+    {
+        Left,
+        Right,
+    };
+
+    enum class PlayerType
+    {
+        Robot,
+        User,
+        Other,
+    };
+
     // ----------------------------
     // 必须添加的哈希函数（针对枚举）
     // ----------------------------
