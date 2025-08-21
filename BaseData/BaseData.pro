@@ -11,11 +11,9 @@ DEFINES += BaseData_LIBRARY
 # 源文件
 HEADERS += \
     *.h \
-    cards.h
 
 SOURCES += \
     *.cpp \
-    cards.cpp
 
 # 安装配置
 target.path = $$DESTDIR
