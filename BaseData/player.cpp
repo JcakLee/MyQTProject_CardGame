@@ -168,6 +168,6 @@ void Player::preparePlayHand()
 
 
 
-} //end of namespace database
+} //end of namespace basedata
 
 

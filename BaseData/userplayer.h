@@ -6,14 +6,15 @@
 
 namespace basedata
 {
-class UserPlayer : public Player
+class EXPORT_BASEDATA_ABI UserPlayer : public Player
 {
     Q_OBJECT
 public:
-    using Player::Player;
+    //using Player::Player;
     explicit UserPlayer(QObject *parent);
+    explicit UserPlayer(QString name ,QObject *parent = nullptr);
     void preparecallLord() override;
     void preparePlayHand() override;
 };
-} //end of namespace database
+} //end of namespace basedata
 #endif // USERPLAYER_H

@@ -8,6 +8,12 @@ namespace basedata
 
     }
 
+    Card::Card(CardSuit suit, CardPoint point)
+    {
+        setPoint(point);
+        setSuit(suit);
+    }
+
     Card::~Card()
     {
 

@@ -6,7 +6,7 @@
 
 namespace basedata
 {
-class Player : public QObject
+class EXPORT_BASEDATA_ABI Player : public QObject
 {
     Q_OBJECT
 public:
@@ -61,6 +61,6 @@ protected:
     Player* m_Pendplayer;
 };
 
-} //end of namespace database
+} //end of namespace basedata
 
 #endif // PLAYER_H

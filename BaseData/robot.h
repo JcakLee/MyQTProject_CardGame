@@ -6,15 +6,15 @@
 
 namespace basedata
 {
-class Robot : public Player
+class EXPORT_BASEDATA_ABI Robot : public Player
 {
     Q_OBJECT
 public:
-    using Player::Player;
     explicit Robot(QObject *parent);
+    explicit Robot(QString name ,QObject *parent = nullptr);
     void preparecallLord() override;
     void preparePlayHand() override;
 };
-} //end of namespace database
+} //end of namespace basedata
 
 #endif // ROBOT_H

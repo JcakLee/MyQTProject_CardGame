@@ -10,6 +10,7 @@ namespace basedata
     {
         public:
             Card();
+            Card(CardSuit suit,CardPoint point);
             ~Card();
 
             //Get function
