@@ -19,6 +19,8 @@ SOURCES += \
 target.path = $$DESTDIR
 INSTALLS += target
 
+RESOURCES += res.qrc
+
 # 调试信息
 message("[BaseData] 目标文件: $$TARGET")
 message("[BaseData] 输出到: $$DESTDIR")

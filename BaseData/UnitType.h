@@ -123,6 +123,15 @@ namespace basedata
         return ::qHash(static_cast<size_t >(point), seed);
     }
 
+    enum class Panel
+    {
+        Start,
+        PlayCard,
+        PassOrPlay,
+        CallLord,
+        Empty,
+    };
+
 } //end of namespace basedata
 
 

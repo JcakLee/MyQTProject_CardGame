@@ -22,3 +22,5 @@ HEADERS += \
 SOURCES += \
     *.cpp \
 
+RESOURCES += res.qrc
+

@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "scorepannel.h"
 
+using namespace pannel;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
