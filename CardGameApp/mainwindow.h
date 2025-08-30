@@ -18,8 +18,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void paintEvent(QPaintEvent* event);
 
 private:
     Ui::MainWindow *ui;
+    QPixmap m_bgImage;
 };
 #endif // MAINWINDOW_H
