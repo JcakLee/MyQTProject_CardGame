@@ -2,16 +2,13 @@
 #include "ui_mainwindow.h"
 #include <QPainter>
 #include <QRandomGenerator>
+#include <qlabel.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //按钮组初始化
-    ui->ButtonGroupWidgets->initButtons();
-    ui->ButtonGroupWidgets->selectPanel(basedata::Panel::Start);
 
     //背景图
     int num = QRandomGenerator::global()->bounded(10);
@@ -21,11 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     //设置窗口标题
     this->setWindowTitle("Jack斗地主");
     this->setFixedSize(1000,650);
-
+    //实例化游戏控制类对象
     gameControlInit();
-
     //更新玩家得分
     updateScore();
+    //切割游戏图片
+    initCardMap();
+    //初始化游戏中的按钮组
+    initButtonGroup();
+    //初始化玩家在窗口中的上下文
+    initPlayerContext();
 }
 
 MainWindow::~MainWindow()
@@ -134,5 +136,68 @@ void MainWindow::cropImage(QPixmap &pixmap, int x, int y, Card &card)
     pannel->setHidden(true);
     m_CardMap.insert(card,pannel);
 
+
+}
+
+void MainWindow::initButtonGroup()
+{
+    //按钮组初始化
+    ui->ButtonGroupWidgets->initButtons();
+    ui->ButtonGroupWidgets->selectPanel(basedata::Panel::Start);
+    connect(ui->ButtonGroupWidgets,&ButtonGroup::startGame,this,[=](){});
+    connect(ui->ButtonGroupWidgets,&ButtonGroup::playHand,this,[=](){});
+    connect(ui->ButtonGroupWidgets,&ButtonGroup::pass,this,[=](){});
+    connect(ui->ButtonGroupWidgets,&ButtonGroup::betPoint,this,[=](){});
+
+}
+
+void MainWindow::initPlayerContext()
+{
+    //1.放置玩家扑克牌的区域
+    QRect cardsRect[] =
+    {
+        //x,y,width,height
+        QRect(90,130,100,height()-200),  //左侧机器人
+        QRect(rect().right()-190,130,100,height()-200), //右侧机器人
+        QRect(250,rect().bottom() - 120,width() - 500,100) //当前玩家
+    };
+    //2.玩家出牌的区域
+    QRect playHandRect[] =
+    {
+        QRect(260,150,100,100),
+        QRect(rect().right() - 360,150,100,100),
+        QRect(150,rect().bottom() - 290,width() - 300,100)
+    };
+    //3.玩家头像显示的位置
+    QPoint roleImgPos[] =
+    {
+        QPoint(cardsRect[0].left() - 80,cardsRect[0].height()/2+20),
+        QPoint(cardsRect[1].right()+10,cardsRect[1].height()/2+20),
+        QPoint(cardsRect[2].right()-10,cardsRect[2].top() - 10)
+    };
+
+    int index = m_playerList.indexOf(m_gameControl->getUserPlayer());
+    for(int i =0;i<m_playerList.size();++i)
+    {
+        PlayerContext context;
+        context.align = i==index ? Horizontal : Vertical;
+        context.isFrontSide = i==index ? true : false;
+        context.cardRect = cardsRect[i];
+        context.playHandRect = playHandRect[i];
+        context.info =new QLabel(this);
+        context.info->resize(160,98);
+        context.info->hide();
+        //显示到出牌区域的中心位置
+        QRect rect = playHandRect[i];
+        QPoint pt(rect.left() + (rect.width()-context.info->width())/2,
+                  rect.top()+(rect.height() - context.info->height())/2);
+        context.info->move(pt);
+        //玩家头像
+        context.roleImg = new QLabel(this);
+        context.roleImg->resize(84,120);
+        context.roleImg->hide();
+        context.roleImg->move(roleImgPos[i]);
+        m_contextMap.insert(m_playerList.at(i),context);
+    }
 
 }
