@@ -22,5 +22,5 @@ HEADERS += \
 SOURCES += \
     *.cpp \
 
-RESOURCES += res.qrc
-
+RESOURCES += \
+   $$PWD/../res.qrc \

@@ -12,7 +12,8 @@ SUBDIRS += \
     Pannel \
     CardGameApp \
 
-RESOURCES += res.qrc
+RESOURCES += \
+    res.qrc \
 
 # 打印全局配置
 message("[全局] 输出目录: $$DESTDIR")

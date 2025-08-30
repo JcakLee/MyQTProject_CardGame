@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Pannel.h"
+#include "UnitType.h"
 
 namespace Ui {
 class ButtonGroup;
@@ -19,8 +20,22 @@ public:
     ~ButtonGroup();
 
     void initButtons();
-
     //处理page页
+    void selectPanel(basedata::Panel panel);
+
+    int getCurrentIndex();
+
+public:
+signals:
+    //开始游戏
+    void startGame();
+    //出牌
+    void playHand();
+    //不出牌
+    void pass();
+    //抢地主
+    void betPoint(int bet);
+
 
 private:
     Ui::ButtonGroup *ui;

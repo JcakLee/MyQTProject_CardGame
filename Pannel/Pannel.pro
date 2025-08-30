@@ -27,4 +27,5 @@ FORMS += \
     scorepannel.ui \
     buttongroup.ui \
 
-RESOURCES += res.qrc
+RESOURCES += \
+    $$PWD/../res.qrc \

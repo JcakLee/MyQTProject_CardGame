@@ -271,7 +271,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="NullPage"/>
     </widget>
    </item>
   </layout>

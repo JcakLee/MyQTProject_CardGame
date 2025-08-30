@@ -38,7 +38,8 @@ FORMS += \
 TRANSLATIONS += CardGame_zh_CN.ts
 CONFIG += lrelease embed_translations
 
-RESOURCES += res.qrc
+RESOURCES += \
+   $$PWD/../res.qrc \
 
 # 调试信息
 message("[App] 最终链接库: $$LIBS")

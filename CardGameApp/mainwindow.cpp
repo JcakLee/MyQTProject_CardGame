@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->ButtonGroupWidgets->initButtons();
+    ui->ButtonGroupWidgets->selectPanel(basedata::Panel::Start);
 }
 
 MainWindow::~MainWindow()

@@ -38,17 +38,7 @@
      </widget>
     </item>
     <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Orientation::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
+     <widget class="pannel::ButtonGroup" name="ButtonGroupWidgets" native="true"/>
     </item>
    </layout>
   </widget>
@@ -69,6 +59,12 @@
    <class>pannel::ScorePannel</class>
    <extends>QWidget</extends>
    <header>scorepannel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>pannel::ButtonGroup</class>
+   <extends>QWidget</extends>
+   <header location="global">buttongroup.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
