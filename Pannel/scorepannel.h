@@ -15,6 +15,8 @@ class EXPORT_PANNEL_ABI ScorePannel : public QWidget
 public:
     explicit ScorePannel(QWidget *parent = nullptr);
     ~ScorePannel();
+    //设置面板分数
+    void setScore(int left,int right,int user);
 
 private:
     Ui::ScorePannel *ui;
