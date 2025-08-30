@@ -11,15 +11,16 @@ DEFINES += BaseData_LIBRARY
 # 源文件
 HEADERS += \
     *.h \
-    cards.h
 
 SOURCES += \
     *.cpp \
-    cards.cpp
 
 # 安装配置
 target.path = $$DESTDIR
 INSTALLS += target
+
+RESOURCES += \
+   $$PWD/../res.qrc \
 
 # 调试信息
 message("[BaseData] 目标文件: $$TARGET")

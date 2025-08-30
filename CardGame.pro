@@ -8,8 +8,12 @@ include(common.pri)
 # 子项目定义（注意顺序）
 SUBDIRS += \
     BaseData \
+    GameControl \
     Pannel \
-    CardGameApp
+    CardGameApp \
+
+RESOURCES += \
+    res.qrc \
 
 # 打印全局配置
 message("[全局] 输出目录: $$DESTDIR")

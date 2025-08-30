@@ -22,3 +22,10 @@ SOURCES += \
 
 # 调试信息
 message("[Pannel] 正在链接库: $$LIBS")
+
+FORMS += \
+    scorepannel.ui \
+    buttongroup.ui \
+
+RESOURCES += \
+    $$PWD/../res.qrc \
