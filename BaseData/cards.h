@@ -11,6 +11,7 @@ class EXPORT_BASEDATA_ABI Cards
 {
 public:
     Cards();
+    Cards(const Card& card);
 
     //添加单张卡牌
     void addCard(const Card& card);
@@ -54,7 +55,7 @@ public:
 
     //QSet -> QVector
     //无序 -> 有序
-    CardList toCardList(SortType type);
+    CardList toCardList(SortType type = basedata::SortType::DESC);
 
 
 private:

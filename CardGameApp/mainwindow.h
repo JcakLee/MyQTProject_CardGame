@@ -1,7 +1,7 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <CardPannel.h>
+#include <cardpannel.h>
 #include <QMainWindow>
 #include "scorepannel.h"
 #include "gamecontrol.h"
@@ -23,22 +23,33 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void paintEvent(QPaintEvent* event);
-
     void gameControlInit();
-
     //更新玩家分数
     void updateScore();
-
     //初始化卡牌map
     void initCardMap();
-
     void cropImage(QPixmap& pixmap,int x,int y,Card& card);
-
     //初始化按钮组
     void initButtonGroup();
-
     //初始化玩家在窗口中的上下文环境
     void initPlayerContext();
+    //初始化游戏场景
+    void initGameScene();
+    //处理游戏的状态
+    void gameStatusPrecess(basedata::GameStatus status);
+    //发牌
+    void startDispatchCard();
+    //定时器处理动作
+    void onDispatchCard();
+    //移动扑克牌
+    void cardMoveStep(Player* player,int curPos);
+    //处理分发得到的扑克牌
+    void disPosCard(Player* player,const Cards& cards);
+    void updatePlayerCards(Player* player); 
+    //处理玩家状态的变换
+    void onPlayerStatusChanged(Player* player,basedata::PlayerStatus status);
+    //处理玩家抢地主
+    void onGradLordBet(Player* player,int bet,bool flag);
 
 private:
     Ui::MainWindow *ui;
@@ -67,5 +78,11 @@ private:
         Cards lastCard;
     };
     QMap<Player*,PlayerContext> m_contextMap;
+    CardPannel* m_baseCard; //发牌区的扑克牌
+    CardPannel* m_moveCard; //发牌过程中移动的扑克牌
+    QVector<CardPannel*> m_last3Card;//最后的三张底牌（用于窗口的显示）
+    QPoint m_baseCardPos;
+    basedata::GameStatus m_gameStatus;
+    QTimer *m_timer;
 };
 #endif // MAINWINDOW_H

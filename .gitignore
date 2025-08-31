@@ -52,5 +52,16 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Qt 构建目录
 build/
-build/
+
+# Qt 用户配置文件
+*.pro.user
+*.pro.user.*
+
+# 编译生成的目标文件
+*.obj
+*.o
+*.exe
+*.dll

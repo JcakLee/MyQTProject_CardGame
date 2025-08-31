@@ -1,4 +1,4 @@
-﻿#ifndef CARDPANNEL_H
+#ifndef CARDPANNEL_H
 #define CARDPANNEL_H
 #include "Pannel.h"
 #include <QWidget>
@@ -51,7 +51,7 @@ namespace pannel
         bool m_isFront = true;           //标记卡牌正反面，默认为正面
         bool m_isSelected = false;       //标记卡牌是否被鼠标选择
         Card m_card;
-        Player* m_player;
+        Player* m_player= nullptr;
     };
 } // end of namespace pannel
 

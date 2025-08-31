@@ -2,14 +2,15 @@
 
 namespace basedata
 {
-Player::Player(QObject *parent)
+Player::Player(QObject *parent) : QObject(parent)
 {
-
+    m_score= 0;
+    m_isWin = false;
 }
 
-Player::Player(QString name, QObject *parent) : m_name(name)
+Player::Player(QString name, QObject *parent) : Player(parent) //委托构造函数
 {
-
+     m_name =name;
 }
 
 void Player::setName(QString name)
@@ -104,7 +105,7 @@ Player *Player::getNextPlayer()
 
 void Player::setGradPoint(int point)
 {
-
+    emit notifyGrabLordBet(this,point);
 }
 
 int Player::getPoint()

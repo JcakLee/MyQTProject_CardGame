@@ -44,6 +44,8 @@ public:
     virtual void preparecallLord();
     virtual void preparePlayHand();
 signals:
+    //通知已经下注了
+    void notifyGrabLordBet(Player* player,int bet);
 
 protected:
     QString m_name;
