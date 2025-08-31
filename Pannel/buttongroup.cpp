@@ -1,4 +1,4 @@
-#include "buttongroup.h"
+﻿#include "buttongroup.h"
 #include "ui_buttongroup.h"
 
 namespace pannel
@@ -61,7 +61,7 @@ void ButtonGroup::initButtons()
     });
 }
 
-void ButtonGroup::selectPanel(basedata::Panel panel)
+void ButtonGroup::selectPanel(basedata::Panel panel,int bet)
 {
     int targetIndex = -1;  // 初始值设为无效索引，避免未匹配时出错
     switch (panel) {
@@ -84,6 +84,27 @@ void ButtonGroup::selectPanel(basedata::Panel panel)
         return;  // 直接返回，避免设置无效索引
     }
     ui->stackedWidget->setCurrentIndex(targetIndex);
+    if(panel == basedata::Panel::CallLord)
+    {
+        if(bet == 0)
+        {
+            ui->oneScore->setVisible(true);
+            ui->twoScore->setVisible(true);
+            ui->threeScore->setVisible(true);
+        }
+        else if(bet == 1)
+        {
+            ui->oneScore->setVisible(false);
+            ui->twoScore->setVisible(true);
+            ui->threeScore->setVisible(true);
+        }
+        else if(bet == 2)
+        {
+            ui->oneScore->setVisible(false);
+            ui->twoScore->setVisible(false);
+            ui->threeScore->setVisible(true);
+        }
+    }
 }
 
 int ButtonGroup::getCurrentIndex()

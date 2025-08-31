@@ -5,6 +5,11 @@ namespace basedata
 {
 Cards::Cards() {}
 
+Cards::Cards(const Card &card)
+{
+    addCard(card);
+}
+
 void Cards::addCard(const Card &card)
 {
     m_cards.insert(card);

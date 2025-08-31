@@ -1,4 +1,4 @@
-#ifndef BUTTONGROUP_H
+﻿#ifndef BUTTONGROUP_H
 #define BUTTONGROUP_H
 
 #include <QWidget>
@@ -21,7 +21,7 @@ public:
 
     void initButtons();
     //处理page页
-    void selectPanel(basedata::Panel panel);
+    void selectPanel(basedata::Panel panel,int bet = 0);
 
     int getCurrentIndex();
 
