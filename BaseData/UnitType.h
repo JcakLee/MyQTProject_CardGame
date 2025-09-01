@@ -132,6 +132,31 @@ namespace basedata
         Empty,
     };
 
+    //牌型
+    enum class HandType
+    {
+        Hand_Unknown,
+        Hand_Pass,
+        Hand_Single,
+        Hand_Pair,
+        Hand_Triple,
+        Hand_Triple_Single,
+        Hand_Triple_Pair,
+        Hand_Plane,
+        Hand_Plane_Two_Single,
+        Hand_Plane_Pair,
+        Hand_Seq_Pair,
+        Hand_Seq_Single,
+        Hand_Bomb,
+        Hand_Bomb_Single,
+        Hand_Bomb_Pair,
+        Hand_Bomb_Two_Single,
+        Hand_Bomb_Jokers,
+        Hand_Bomb_Jokers_Single,
+        Hand_Bomb_Jokers_Pair,
+        Hand_Bomb_Jokers_Two_Single
+    };
+
 } //end of namespace basedata
 
 
