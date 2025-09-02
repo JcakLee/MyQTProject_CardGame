@@ -10,9 +10,6 @@ public:
     PlayHand();
     PlayHand(Cards& cards);
     PlayHand(HandType type,CardPoint point,int cardsNum);
-    void classify(basedata::Cards& cards);
-    void judgeCardType();
-
     //牌型判断辅助函数
     bool Hand_Pass();
     bool Hand_Single();
@@ -33,6 +30,16 @@ public:
     bool Hand_Bomb_Jokers_Single();
     bool Hand_Bomb_Jokers_Pair();
     bool Hand_Bomb_Jokers_Two_Single();
+
+    basedata::HandType getHandType();
+    basedata::CardPoint getCardPoint();
+    int getExtra();
+    //牌型比较
+    bool canBeat(const PlayHand &other);
+
+private:
+    void classify(basedata::Cards& cards);
+    void judgeCardType();
 
 private:
     HandType m_type;

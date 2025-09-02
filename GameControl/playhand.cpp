@@ -66,11 +66,107 @@ void PlayHand::classify(basedata::Cards &cards)
 
 void PlayHand::judgeCardType()
 {
-
+    m_type = basedata::HandType::Hand_Unknown;
+    m_point = basedata::CardPoint::CardPoint_Begin;
+    m_cardsNum = 0;
+    if(Hand_Single())
+    {
+        m_type = basedata::HandType::Hand_Single;
+        m_point = m_oneCard[0];
+    }
+    else if(Hand_Pass())
+    {
+        m_type = basedata::HandType::Hand_Pass;
+    }
+    else if(Hand_Pair())
+    {
+        m_type = basedata::HandType::Hand_Pair;
+        m_point = m_twoCard[0];
+    }
+    else if(Hand_Triple())
+    {
+        m_type = basedata::HandType::Hand_Triple;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Triple_Single())
+    {
+        m_type = basedata::HandType::Hand_Triple_Single;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Triple_Pair())
+    {
+        m_type = basedata::HandType::Hand_Triple_Pair;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane())
+    {
+        m_type = basedata::HandType::Hand_Plane;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Plane_Two_Single;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane_Pair())
+    {
+        m_type = basedata::HandType::Hand_Plane_Pair;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Seq_Pair())
+    {
+        m_type = basedata::HandType::Hand_Seq_Pair;
+        m_point = m_twoCard[0];
+        m_cardsNum = m_twoCard.size();
+    }
+    else if(Hand_Seq_Single())
+    {
+        m_type = basedata::HandType::Hand_Seq_Single;
+        m_point = m_oneCard[0];
+        m_cardsNum = m_oneCard.size();
+    }
+    else if(Hand_Bomb())
+    {
+        m_type = basedata::HandType::Hand_Bomb;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Single;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Pair())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Pair;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Two_Single;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Joker())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers;
+    }
+    else if(Hand_Bomb_Jokers_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Single;
+    }
+    else if(Hand_Bomb_Jokers_Pair())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Pair;
+    }
+    else if(Hand_Bomb_Jokers_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Two_Single;
+    }
 }
 
 bool PlayHand::Hand_Pass()
 {
+    if(m_oneCard.isEmpty() && m_twoCard.isEmpty()
+        &&m_threeCard.isEmpty() && m_fourCard.isEmpty()) return true;
     return false;
 }
 
@@ -263,6 +359,42 @@ bool PlayHand::Hand_Bomb_Jokers_Two_Single()
         else return false;
     }
     return false;
+}
+
+int PlayHand::getExtra()
+{
+    return m_cardsNum;
+}
+
+bool PlayHand::canBeat(const PlayHand &other)
+{
+    if(m_type ==basedata::HandType::Hand_Unknown) return false;
+    if(other.m_type == basedata::HandType::Hand_Pass) return true;
+    if(m_type == basedata::HandType::Hand_Bomb_Jokers) return true;
+    if(m_type == basedata::HandType::Hand_Bomb && other.m_type >=basedata::HandType::Hand_Single
+        && other.m_type <=basedata::HandType::Hand_Seq_Single) return true;
+    if(m_type == other.m_type)
+    {
+        if(m_type == basedata::HandType::Hand_Seq_Pair ||  m_type == basedata::HandType::Hand_Seq_Single)
+        {
+            return m_point > other.m_point && m_cardsNum == other.m_cardsNum;
+        }
+        else
+        {
+            return m_point > other.m_point;
+        }
+    }
+    return false;
+}
+
+CardPoint PlayHand::getCardPoint()
+{
+    return m_point;
+}
+
+HandType PlayHand::getHandType()
+{
+    return m_type;
 }
 
 
