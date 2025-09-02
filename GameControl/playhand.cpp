@@ -4,13 +4,17 @@ PlayHand::PlayHand() {}
 
 PlayHand::PlayHand(basedata::Cards &cards)
 {
-
+    //1.对卡牌进行分类：1张的，2张的，3张的，4张的有多少种
+    classify(cards);
+    //2.对牌型进行分类
+    judgeCardType();
 }
 
 PlayHand::PlayHand(basedata::HandType type, basedata::CardPoint point, int cardsNum)
 {
-    //1.对卡牌进行分类：1张的，2张的，3张的，4张的有多少种
-    //2.对牌型进行分类
+    m_type = type;
+    m_point = point;
+    m_cardsNum = cardsNum;
 }
 
 void PlayHand::classify(basedata::Cards &cards)
