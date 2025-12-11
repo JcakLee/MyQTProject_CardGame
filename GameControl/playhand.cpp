@@ -1,5 +1,7 @@
 ﻿#include "playhand.h"
 
+namespace gamecontrol
+{
 PlayHand::PlayHand() {}
 
 PlayHand::PlayHand(basedata::Cards &cards)
@@ -7,7 +9,7 @@ PlayHand::PlayHand(basedata::Cards &cards)
 
 }
 
-PlayHand::PlayHand(basedata::HandType type, basedata::CardPoint point, int cardsNum)
+PlayHand::PlayHand(basedata::HandType type, basedata::CardPoint point, int extra)
 {
     //1.对卡牌进行分类：1张的，2张的，3张的，4张的有多少种
     //2.对牌型进行分类
@@ -66,9 +68,92 @@ void PlayHand::classify(basedata::Cards &cards)
 
 void PlayHand::judgeCardType()
 {
-
+    m_type = basedata::HandType::Hand_Unknown;
+    m_point = basedata::CardPoint::CardPoint_Begin;
+    if(Hand_Single())
+    {
+        m_type = basedata::HandType::Hand_Single;
+        m_point = m_oneCard[0];
+    }
+    else if(Hand_Pair())
+    {
+        m_type = basedata::HandType::Hand_Pair;
+        m_point = m_twoCard[0];
+    }
+    else if(Hand_Triple())
+    {
+        m_type = basedata::HandType::Hand_Triple;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Triple_Single())
+    {
+        m_type = basedata::HandType::Hand_Triple_Single;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Triple_Pair())
+    {
+        m_type = basedata::HandType::Hand_Triple_Pair;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane())
+    {
+        m_type = basedata::HandType::Hand_Plane;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Plane_Two_Single;
+        m_point = m_threeCard[0];
+    }
+    else if(Hand_Plane_Pair())
+    {
+        m_type = basedata::HandType::Hand_Plane_Pair;
+        m_point = m_twoCard[0];
+        m_extra = m_twoCard.size();
+    }
+    else if(Hand_Seq_Single())
+    {
+        m_type = basedata::HandType::Hand_Seq_Single;
+        m_point = m_oneCard[0];
+        m_extra = m_oneCard.size();
+    }
+    else if(Hand_Bomb())
+    {
+        m_type = basedata::HandType::Hand_Bomb;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Single;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Pair())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Pair;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Two_Single;
+        m_point = m_fourCard[0];
+    }
+    else if(Hand_Bomb_Joker())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers;
+    }
+    else if(Hand_Bomb_Joker())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Single;
+    }
+    else if(Hand_Bomb_Jokers_Pair())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Pair;
+    }
+    else if(Hand_Bomb_Jokers_Two_Single())
+    {
+        m_type = basedata::HandType::Hand_Bomb_Jokers_Two_Single;
+    }
 }
-
 bool PlayHand::Hand_Pass()
 {
     return false;
@@ -265,4 +350,9 @@ bool PlayHand::Hand_Bomb_Jokers_Two_Single()
     return false;
 }
 
+int PlayHand::getExtra()
+{
+    return m_extra;
+}
+} //End namespacae gamecontrol
 
