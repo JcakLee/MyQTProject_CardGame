@@ -75,6 +75,10 @@ void PlayHand::judgeCardType()
         m_type = basedata::HandType::Hand_Single;
         m_point = m_oneCard[0];
     }
+    else if(Hand_Pass())
+    {
+        m_type = basedata::HandType::Hand_Pass;
+    }
     else if(Hand_Pair())
     {
         m_type = basedata::HandType::Hand_Pair;
@@ -154,8 +158,39 @@ void PlayHand::judgeCardType()
         m_type = basedata::HandType::Hand_Bomb_Jokers_Two_Single;
     }
 }
+
+bool PlayHand::canBeat(const PlayHand& other)
+{
+    if(other.m_type == basedata::HandType::Hand_Pass) return true;
+    if(m_type == basedata::HandType::Hand_Unknown) return false;
+    if(m_type == basedata::HandType::Hand_Bomb_Jokers) return true;
+    if(m_type == basedata::HandType::Hand_Bomb
+        && other.m_type>=basedata::HandType::Hand_Single
+        && other.m_type<=basedata::HandType::Hand_Seq_Single)
+    {
+        return true;
+    }
+    if(m_type == other.m_type)
+    {
+        if(m_type == basedata::HandType::Hand_Seq_Pair ||
+            m_type == basedata::HandType::Hand_Seq_Single)
+        {
+            return m_point > other.m_point && m_extra == other.m_extra;
+        }
+        else
+        {
+            return m_point > other.m_point;
+        }
+    }
+    return false;
+}
+
 bool PlayHand::Hand_Pass()
 {
+    if(m_oneCard.size() == 0 &&
+        m_twoCard.size() == 0 &&
+        m_threeCard.size() == 0 &&
+        m_fourCard.size() == 0) return true;
     return false;
 }
 

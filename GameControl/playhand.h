@@ -14,6 +14,7 @@ public:
     PlayHand(Cards& cards);
     PlayHand(HandType type,CardPoint point,int extra);
     int getExtra();
+    bool canBeat(const PlayHand& other);//比较自己的牌和对手的牌的大小
 
 private:
     void classify(basedata::Cards& cards);
