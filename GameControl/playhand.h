@@ -31,6 +31,7 @@ public:
     bool Hand_Bomb_Jokers_Pair();
     bool Hand_Bomb_Jokers_Two_Single();
 
+    //得到牌的属性信息
     basedata::HandType getHandType();
     basedata::CardPoint getCardPoint();
     int getExtra();

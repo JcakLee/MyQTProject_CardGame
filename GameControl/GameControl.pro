@@ -19,9 +19,11 @@ CONFIG(debug, debug|release) {
 
 HEADERS += \
     *.h \
+    strategy.h
 
 SOURCES += \
     *.cpp \
+    strategy.cpp
 
 RESOURCES += \
    $$PWD/../res.qrc \
