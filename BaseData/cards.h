@@ -23,9 +23,11 @@ public:
 
 
     //删除单张卡牌
-    void deleteCard(Card& card);
+    void remove(const Card& card);
     //添加多张卡牌
-    void deleteCard(Cards& cards);
+    void remove(const Cards& cards);
+
+    void remove(const QVector<Cards> cards);
 
     //卡牌数量
     int cardCount();

@@ -135,7 +135,7 @@ void Player::clearCards()
 
 void Player::playHand(Cards &cards)
 {
-    m_cards.deleteCard(cards);
+    m_cards.remove(cards);
 }
 
 void Player::setPandInfo(Player *player, Cards cards)

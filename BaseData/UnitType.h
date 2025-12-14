@@ -137,7 +137,7 @@ namespace basedata
     {
         Hand_Unknown,
         Hand_Pass,
-        Hand_Single,
+         Hand_Single,
         Hand_Pair,
         Hand_Triple,
         Hand_Triple_Single,
